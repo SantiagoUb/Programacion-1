@@ -11,7 +11,7 @@ public class Estudiante {
     private String nombreAcudiente;
     private String numeroContacto;
 
-    // Consstructor
+    // Constructor
     public Estudiante(String nombre, int edad, String genero, String identificacion, String alergias,
             String nombreAcudiente, String numeroContacto) {
         this.nombre = nombre;
@@ -21,7 +21,6 @@ public class Estudiante {
         this.alergias = alergias;
         this.nombreAcudiente = nombreAcudiente;
         this.numeroContacto = numeroContacto;
-
     }
 
     // metodo toString
@@ -30,10 +29,10 @@ public class Estudiante {
         return "Nombre del estudiante: " + nombre + "\nEdad: " + edad + "\nGenero: " + genero
                 + "\nNumero de identificacion: "
                 + identificacion + "\nAlergias: " + alergias + "\nNombre del Acudiente: " + nombreAcudiente
-                + "\nNumero de Contacto: " + numeroContacto;
+                + "\nNumero de Contacto: " + numeroContacto + "\n" ;
     }
 
-    // Getters y Stters
+    // Getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -89,5 +88,4 @@ public class Estudiante {
     public void setNumeroContacto(String numeroContacto) {
         this.numeroContacto = numeroContacto;
     }
-
 }

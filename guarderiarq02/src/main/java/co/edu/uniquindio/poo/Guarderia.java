@@ -1,15 +1,20 @@
 package co.edu.uniquindio.poo;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JOptionPane;
 
 public class Guarderia {
+
+    public static boolean obtenerListaEstudiantesMayores;
     // Atributos de la clase
     private String nombre;
     private String nit;
     private ArrayList<Estudiante> listaEstudiantes;
+
+    // Constructor
+    public Guarderia(String nombre, String nit) {
+        this.nombre = nombre;
+        this.nit = nit;
+    }
 
     // Metodos propios de la clase
     public void agregarEstudiante(Estudiante estudianteAgregar) {
@@ -23,7 +28,8 @@ public class Guarderia {
     public void actualizarEstudiante(Estudiante estudianteActualizar) {
 
         for (Estudiante indexEstudiante : listaEstudiantes) {
-            if (indexEstudiante.getIdentificacion().equals(estudianteActualizar.getIdentificacion()));
+            if (indexEstudiante.getIdentificacion().equals(estudianteActualizar.getIdentificacion()))
+                ;
 
             indexEstudiante.setNombre(estudianteActualizar.getNombre());
             indexEstudiante.setAlergias(estudianteActualizar.getAlergias());
@@ -42,13 +48,21 @@ public class Guarderia {
         }
     }
 
-    // Constructor
-    public Guarderia(String nombre, String nit) {
-        this.nombre = nombre;
-        this.nit = nit;
+    // Metodo para filtrar los estudiantes mayores a 5 años
+    public ArrayList<Estudiante> obtenerListaEstudiantesMayores(String identificacion) {
+
+        ArrayList<Estudiante> listaEstudiantesMayores = new ArrayList<>();
+        for (Estudiante estdudiante : listaEstudiantes) {
+            if (estdudiante.getEdad() > 5 ) {
+                listaEstudiantesMayores.add(estdudiante);
+            }
+        }
+
+        return listaEstudiantesMayores;
     }
 
-    // Getters y Setters
+
+    // Getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -73,26 +87,4 @@ public class Guarderia {
         this.listaEstudiantes = listaEstudiantes;
     }
 
-    // Metodo para filtrar los estudiantes mayores a 5 años
-    public ArrayList<Estudiante> obtenerListaEstudiantesMayores(ArrayList<Estudiante> listaEstudiantes) {
-        List<Estudiante> listaEstudiantesFiltrados = new ArrayList<>();
-        for (Estudiante estudiante : listaEstudiantes) {
-            if (estudiante.getEdad() > 5)
-                ;
-            listaEstudiantesFiltrados.add(estudiante);
-        }
-        return (ArrayList<Estudiante>) listaEstudiantesFiltrados;
-
-    }
-
-    // Obtener la lista de los estudiantes mayores a 5 años
-    List<Estudiante> resultado = obtenerListaEstudiantesMayores(listaEstudiantes);
-    {
-
-        for (Estudiante estudiante : resultado) {
-
-            JOptionPane.showInputDialog(estudiante);
-        }
-
-    }
 }

@@ -17,6 +17,9 @@ public class Main {
         ArrayList<Estudiante> listaEstudiantes = new ArrayList<>();
         listaEstudiantes = crearEstudianteBase(listaEstudiantes);
 
+        ArrayList<Estudiante> listaEstudiantesMayores = listaEstudiantes;
+        listaEstudiantesMayores= estudiantesMayoresA5(listaEstudiantesMayores);
+
         for (int i = 0; i < cantidadEstudiantes; i++) {
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre del estudiante ");
             int edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad del estudiante"));
@@ -33,10 +36,11 @@ public class Main {
             listaEstudiantes.add(NuevoEstudiante);
 
         }
-
-        JOptionPane.showMessageDialog(null, listaEstudiantes);
+        JOptionPane.showMessageDialog(null, listaEstudiantesMayores);
 
     }
+
+    
 
     @SuppressWarnings("rawtypes")
     public static ArrayList crearEstudianteBase(ArrayList<Estudiante> listaEstudiantes) {
@@ -59,4 +63,14 @@ public class Main {
 
     }
 
+    public static ArrayList<Estudiante> estudiantesMayoresA5(ArrayList<Estudiante> listaEstudiantesMayores){
+
+        for (Estudiante estudiante : listaEstudiantesMayores) {
+            if(Guarderia.obtenerListaEstudiantesMayores){
+                listaEstudiantesMayores.add(estudiante);
+            }
+            
+        }
+        return listaEstudiantesMayores;
+    }
 }
