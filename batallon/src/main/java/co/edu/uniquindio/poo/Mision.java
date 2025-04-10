@@ -8,7 +8,7 @@ public class Mision {
     private String id;
     private LocalDate fecha;
     private String ubicacion;
-    private LinkedList<String> personal;
+    private LinkedList<Soldado> personal;
     private Vehiculo theVehiculo;
 
     public Mision(String id, LocalDate fecha, String ubicacion) {
@@ -42,11 +42,11 @@ public class Mision {
         this.ubicacion = ubicacion;
     }
 
-    public LinkedList<String> getPersonal() {
+    public LinkedList<Soldado> getPersonal() {
         return personal;
     }
 
-    public void setPersonal(LinkedList<String> personal) {
+    public void setPersonal(LinkedList<Soldado> personal) {
         this.personal = personal;
     }
 

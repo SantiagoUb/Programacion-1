@@ -12,6 +12,7 @@ public class Batallon {
     private LinkedList<VehiculoBlindado> listVehiculosBlindados;
     private LinkedList<VehiculoApoyo> listVehiculosApoyo;
     private LinkedList<Vehiculo> listVehiculos;
+    private LinkedList<Soldado> listSoldados;
     
 
     // Constructor
@@ -23,6 +24,7 @@ public class Batallon {
         listVehiculosBlindados = new LinkedList<>();
         listVehiculosTransporte = new LinkedList<>();
         listVehiculos = new LinkedList<>();
+        listSoldados = new LinkedList<>();
     }
 
     // Calcular kilometraje promedio por tipo vehiculo
@@ -194,6 +196,17 @@ public class Batallon {
         return true;
     }
 
+    //CRUD para soldado
+    public boolean crearSoldado(){
+        for(Soldado newSoldado: listSoldados){
+            if(verificarId(newSoldado.getIdentificador())){
+                listSoldados.add(newSoldado);
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Getters y setters
     public String getId() {
         return id;
@@ -250,5 +263,19 @@ public class Batallon {
     public void setListVehiculos(LinkedList<Vehiculo> listVehiculos) {
         this.listVehiculos = listVehiculos;
     }
+
+    public LinkedList<Vehiculo> getListVehiculos() {
+        return listVehiculos;
+    }
+
+    public LinkedList<Soldado> getListSoldados() {
+        return listSoldados;
+    }
+
+    public void setListSoldados(LinkedList<Soldado> listSoldados) {
+        this.listSoldados = listSoldados;
+    }
+
+    
 
 }
