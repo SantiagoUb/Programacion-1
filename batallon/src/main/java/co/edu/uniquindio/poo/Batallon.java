@@ -13,7 +13,6 @@ public class Batallon {
     private LinkedList<VehiculoApoyo> listVehiculosApoyo;
     private LinkedList<Vehiculo> listVehiculos;
     private LinkedList<Soldado> listSoldados;
-    
 
     // Constructor
     public Batallon(String id, String nombre) {
@@ -25,6 +24,90 @@ public class Batallon {
         listVehiculosTransporte = new LinkedList<>();
         listVehiculos = new LinkedList<>();
         listSoldados = new LinkedList<>();
+    }
+
+    // asignar soldado a una mision
+    public boolean asignarSoldadoMision(String identificadorSoldado, String idMision) {
+        boolean asignar = false;
+        Mision newMision = null;
+        Soldado newSoldado1 = null;
+
+        for (Mision newMision1 : listMisiones) {
+            if (newMision1.getId().equals(idMision)) {
+                newMision = newMision1;
+                break;
+            }
+        }
+
+        for (Soldado newSoldado : listSoldados) {
+            if (newSoldado.getIdentificador().equals(identificadorSoldado)
+                    && newSoldado.getEstadoSoldado().equals(EstadoSoldado.DISPONIBLE)) {
+                newSoldado1 = newSoldado;
+            }
+        }
+        if (newMision != null && newSoldado1 != null) {
+            newMision.getPersonal().add(newSoldado1);
+            newSoldado1.setEstadoSoldado(EstadoSoldado.NO_DISPONIBLE);
+            asignar = true;
+        }
+        return asignar;
+    }
+
+    // liberar soldados al finalizar mision
+    public boolean liberSoldado(LinkedList<Soldado> listPersonal, LocalDate fechaMision) {
+        LocalDate fechaActual = LocalDate.now();
+        boolean liberarSoldados = false;
+        if(fechaMision.isBefore(fechaActual)){
+            for(Soldado soldado: listPersonal){
+                soldado.setEstadoSoldado(EstadoSoldado.DISPONIBLE);
+                liberarSoldados = true;
+            }
+        }
+        return liberarSoldados;
+    }
+
+    // Buscar soldado por especializacion
+    public LinkedList<Soldado> buscarSoldadoEspecialidad(Especializacion especializacionBuscar) {
+        LinkedList<Soldado> listSoldadosEspecialidad = new LinkedList<>();
+        for (Soldado soldado : listSoldados) {
+            if (soldado.getEspecializacion().equals(especializacionBuscar)) {
+                listSoldadosEspecialidad.add(soldado);
+            }
+        }
+        return listSoldadosEspecialidad;
+    }
+
+    // Obtener soldados disponibles por rango
+    public LinkedList<Soldado> soldadosDisponoblesRango(Rango indexRango) {
+        LinkedList<Soldado> listSoldadosRango = new LinkedList<>();
+        for (Soldado soldado : listSoldados) {
+            if (soldado.getRango().equals(indexRango)) {
+                listSoldadosRango.add(soldado);
+            }
+        }
+        return listSoldadosRango;
+    }
+
+    // Calcular promedio edad soldados
+    public double calcularPromedioEdadSoldados() {
+        double sumaEdades = 0;
+        double promedioEdades = 0;
+        for (Soldado newSoldado : listSoldados) {
+            sumaEdades += newSoldado.getEdad();
+        }
+
+        promedioEdades = sumaEdades / listSoldados.size();
+        return promedioEdades;
+    }
+
+    // Buscar soldado por id
+    public Soldado buscarIdSoldado(String idBuscar) {
+        for (Soldado soldado : listSoldados) {
+            if (soldado.getIdentificador().equals(idBuscar)) {
+                return soldado;
+            }
+        }
+        return null;
     }
 
     // Calcular kilometraje promedio por tipo vehiculo
@@ -122,10 +205,10 @@ public class Batallon {
 
     }
 
-    //CRUD para vehiculo
-    public boolean crearVehiculo(Vehiculo newVehiculo){
-        for(Vehiculo newvehiculo: listVehiculos){
-            if(verificarVehiculo(newvehiculo.getId())){
+    // CRUD para vehiculo
+    public boolean crearVehiculo(Vehiculo newVehiculo) {
+        for (Vehiculo newvehiculo : listVehiculos) {
+            if (verificarVehiculo(newvehiculo.getId())) {
                 listVehiculos.add(newvehiculo);
                 return true;
             }
@@ -133,19 +216,19 @@ public class Batallon {
         return false;
     }
 
-    public boolean verificarVehiculo(String idVerificar){
-        for(Vehiculo vehiculo: listVehiculos){
-            if(vehiculo.getId().equals(idVerificar)){
+    public boolean verificarVehiculo(String idVerificar) {
+        for (Vehiculo vehiculo : listVehiculos) {
+            if (vehiculo.getId().equals(idVerificar)) {
                 return false;
             }
         }
         return true;
     }
 
-    //CRUD para vehiculo de apoyo
-    public boolean crearVehiculoApoyo(VehiculoApoyo newVehiculoApoyo){
-        for(VehiculoApoyo newvehiculoApoyo: listVehiculosApoyo){
-            if(verificarVehiculo(newvehiculoApoyo.getId())){
+    // CRUD para vehiculo de apoyo
+    public boolean crearVehiculoApoyo(VehiculoApoyo newVehiculoApoyo) {
+        for (VehiculoApoyo newvehiculoApoyo : listVehiculosApoyo) {
+            if (verificarVehiculo(newvehiculoApoyo.getId())) {
                 listVehiculos.add(newvehiculoApoyo);
                 return true;
             }
@@ -153,10 +236,10 @@ public class Batallon {
         return false;
     }
 
-    //CRUD para vehiculo de Transporte
-    public boolean crearVehiculoTransporte(VehiculoTransporte newVehiculoTransporte){
-        for(VehiculoTransporte newvehiculoTransporte: listVehiculosTransporte){
-            if(verificarVehiculo(newvehiculoTransporte.getId())){
+    // CRUD para vehiculo de Transporte
+    public boolean crearVehiculoTransporte(VehiculoTransporte newVehiculoTransporte) {
+        for (VehiculoTransporte newvehiculoTransporte : listVehiculosTransporte) {
+            if (verificarVehiculo(newvehiculoTransporte.getId())) {
                 listVehiculos.add(newvehiculoTransporte);
                 return true;
             }
@@ -164,10 +247,10 @@ public class Batallon {
         return false;
     }
 
-    //CRUD para vehiculo blindado
-    public boolean crearVehiculoBlindado(VehiculoBlindado newVehiculoBlindado){
-        for(VehiculoBlindado newvehiculoBlindado: listVehiculosBlindados){
-            if(verificarVehiculo(newvehiculoBlindado.getId())){
+    // CRUD para vehiculo blindado
+    public boolean crearVehiculoBlindado(VehiculoBlindado newVehiculoBlindado) {
+        for (VehiculoBlindado newvehiculoBlindado : listVehiculosBlindados) {
+            if (verificarVehiculo(newvehiculoBlindado.getId())) {
                 listVehiculos.add(newvehiculoBlindado);
                 return true;
             }
@@ -175,11 +258,10 @@ public class Batallon {
         return false;
     }
 
-
-    //CRUD para mision
-    public boolean registrarMision(){
-        for(Mision newMision: listMisiones){
-            if(verificarId(newMision.getId())){
+    // CRUD para mision
+    public boolean registrarMision() {
+        for (Mision newMision : listMisiones) {
+            if (verificarId(newMision.getId())) {
                 listMisiones.add(newMision);
                 return true;
             }
@@ -187,19 +269,19 @@ public class Batallon {
         return false;
     }
 
-    public boolean verificarId(String idVerificar){
+    public boolean verificarId(String idVerificar) {
         for (Mision mision : listMisiones) {
-            if(mision.getId().equals(idVerificar)){
+            if (mision.getId().equals(idVerificar)) {
                 return false;
             }
         }
         return true;
     }
 
-    //CRUD para soldado
-    public boolean crearSoldado(){
-        for(Soldado newSoldado: listSoldados){
-            if(verificarId(newSoldado.getIdentificador())){
+    // CRUD para soldado
+    public boolean crearSoldado() {
+        for (Soldado newSoldado : listSoldados) {
+            if (verificarId(newSoldado.getIdentificador())) {
                 listSoldados.add(newSoldado);
                 return true;
             }
@@ -275,7 +357,5 @@ public class Batallon {
     public void setListSoldados(LinkedList<Soldado> listSoldados) {
         this.listSoldados = listSoldados;
     }
-
-    
 
 }

@@ -3,6 +3,6 @@ package co.edu.uniquindio.poo;
 public enum Especializacion {
 
     MEDICO,
-    COMUNICAION, 
+    COMUNICACION, 
     LOGISTICA;
 }

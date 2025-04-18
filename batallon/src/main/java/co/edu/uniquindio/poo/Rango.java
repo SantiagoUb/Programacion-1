@@ -3,7 +3,7 @@ package co.edu.uniquindio.poo;
 public enum Rango {
 
     SOLDADO,
-    CADO,
+    CABO,
     SARGENTO;
 
 }

@@ -11,8 +11,7 @@ public class Soldado {
     private Mision theMision;
 
 
-    public Soldado(String identificador, String nombre, Rango rango, Especializacion especializacion, int edad,
-            EstadoSoldado estadoSoldado, Mision theMision) {
+    public Soldado(String identificador, String nombre, Rango rango, Especializacion especializacion, int edad, EstadoSoldado estadoSoldado, Mision theMision) {
         this.identificador = identificador;
         this.nombre = nombre;
         this.rango = rango;

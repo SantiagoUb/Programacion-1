@@ -36,7 +36,9 @@ public class Main {
             listaEstudiantes.add(NuevoEstudiante);
 
         }
+
         JOptionPane.showMessageDialog(null, listaEstudiantesMayores);
+        
 
     }
 
@@ -45,14 +47,14 @@ public class Main {
     @SuppressWarnings("rawtypes")
     public static ArrayList crearEstudianteBase(ArrayList<Estudiante> listaEstudiantes) {
 
-        Estudiante estudiante1 = new Estudiante("Juan Pérez", 4, "Masculino", "123456789", "Ninguna", "María Pérez",
+        Estudiante estudiante1 = new Estudiante("JUAN PEREZ", 4, "Masculino", "123456789", "Ninguna", "María Pérez",
                 "555-1234");
-        Estudiante estudiante2 = new Estudiante("Ana Gómez", 20, "Femenino", "987654321", "Alergia al polen",
+        Estudiante estudiante2 = new Estudiante("ANA GOMEZ", 8, "Femenino", "987654321", "Alergia al polen",
                 "Carlos Gómez", "555-5678");
-        Estudiante estudiante3 = new Estudiante("Luis Rodríguez", 2, "Masculino", "234567890", "Ninguna",
+        Estudiante estudiante3 = new Estudiante("LUIS RODRIGUEZ", 3, "Masculino", "234567890", "Ninguna",
                 "Luisa Rodríguez", "555-9876");
-        Estudiante estudiante4 = new Estudiante("Clara Martín", 19, "Femenino", "345678901", "Alergia a mariscos",
-                "José Martín", "555-6543");
+        Estudiante estudiante4 = new Estudiante("CLARA MURILLO", 9, "Femenino", "345678901", "Alergia a mariscos",
+                "José Murillo", "555-6543");
 
         listaEstudiantes.add(estudiante1);
         listaEstudiantes.add(estudiante2);
@@ -71,6 +73,16 @@ public class Main {
             }
             
         }
+
+        Estudiante estudiante2 = new Estudiante("Ana Gómez", 10, "Femenino", "987654321", "Alergia al polen",
+        "Carlos Gómez", "555-5678");
+
+        Estudiante estudiante4 = new Estudiante("Clara Martín", 9, "Femenino", "345678901", "Alergia a mariscos",
+        "José Martín", "555-6543");
+
+        listaEstudiantesMayores.add(estudiante4);
+        listaEstudiantesMayores.add(estudiante2);
+
         return listaEstudiantesMayores;
     }
 }
